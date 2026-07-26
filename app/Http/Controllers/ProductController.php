@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use Illuminate\Http\Request;
 use App\Exports\ProductsExport;
-use Maatwebsite\Excel\Facades\Excel;
+use App\Models\Product;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -63,19 +63,21 @@ class ProductController extends Controller
 
         return redirect()->route('products.index')->with('success', 'Produk berhasil dihapus.');
     }
-public function exportExcel()
-{
-    return Excel::download(new ProductsExport, 'data-produk.xlsx');
-}
 
-public function exportPdf()
-{
-    $products = Product::latest()->get();
+    public function exportExcel()
+    {
+        return Excel::download(new ProductsExport, 'data-produk.xlsx');
+    }
 
-    $pdf = Pdf::loadView('products.pdf', compact('products'));
+    public function exportPdf()
+    {
+        $products = Product::latest()->get();
 
-    return $pdf->download('data-produk.pdf');
-}
+        $pdf = Pdf::loadView('products.pdf', compact('products'));
+
+        return $pdf->download('data-produk.pdf');
+    }
+
     private function validateProduct(Request $request, $ignoreId = null): array
     {
         return $request->validate([

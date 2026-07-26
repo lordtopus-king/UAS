@@ -7,7 +7,9 @@
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
-                    </a>
+                    </a><x-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')">
+    {{ __('Produk') }}
+</x-nav-link>
                 </div>
 
                 <!-- Navigation Links -->

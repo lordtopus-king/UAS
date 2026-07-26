@@ -5,7 +5,8 @@
         <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white shadow-sm sm:rounded-lg p-6">
                 <form method="POST" action="{{ route('products.update', $product) }}" class="space-y-4">
-                    @csrf @method('PUT')
+                    @csrf
+                    @method('PUT')
                     @include('products._form')
                     <div class="flex justify-end gap-2">
                         <a href="{{ route('products.index') }}" class="px-4 py-2 bg-gray-200 rounded-md text-sm">Batal</a>
